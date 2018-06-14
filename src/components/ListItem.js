@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
 import { CardSection } from './common';
 import { connect } from 'react-redux';
 import { selectLibrary } from '../actions';
 
 class ListItem extends Component {
 
+  componentWillUpdate(){
+    LayoutAnimation.spring();
+  }
+
   renderSlideDownSection = () => {
-    if(this.props.selectedLibId !== null && this.props.selectedLibId === this.props.library.id){
+    if(this.props.expanded){
       return (
         <CardSection>
           <Text>
@@ -43,9 +47,10 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+
   return {
-    selectedLibId: state.selectedLibId
+    expanded: state.selectedLibId === ownProps.library.id
   }
 };
 
