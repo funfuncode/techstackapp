@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableWithoutFeedback, LayoutAnimation } from 'react-native';
+import { View, Text, TouchableWithoutFeedback, LayoutAnimation, UIManager } from 'react-native';
 import { CardSection } from './common';
 import { connect } from 'react-redux';
 import { selectLibrary } from '../actions';
@@ -7,6 +7,7 @@ import { selectLibrary } from '../actions';
 class ListItem extends Component {
 
   componentWillUpdate(){
+    UIManager.setLayoutAnimationEnabledExperimental && UIManager.setLayoutAnimationEnabledExperimental(true);
     LayoutAnimation.spring();
   }
 
